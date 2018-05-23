@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import contract from 'truffle-contract';
-import TodosContract from '../..//build/contracts/MTG.json';
+import TodosContract from './smart_contracts/build/contracts/MTG.json';
 export const WEB3_CONNECTED = 'WEB3_CONNECTED';
 export const WEB3_DISCONNECTED = 'WEB3_DISCONNECTED';
 export const MTG_CARDS_CONTRACT_INSTANTIATED = 'MTG_CARDS_CONTRACT_INSTANTIATED';
