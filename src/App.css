@@ -1,0 +1,11 @@
+.container { 
+  margin: 100px 150px 100px 150px;
+}
+
+.aligned-text { 
+  margin-left: 6px;
+}
+
+.slick-next:before, .slick-prev:before { 
+  color: black;
+}
