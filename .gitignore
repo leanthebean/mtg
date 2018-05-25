@@ -1,2 +1,4 @@
 /node_modules
+/smart_contracts/node_modules/*
+/server/node_modules/*
 

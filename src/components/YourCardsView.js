@@ -2,9 +2,9 @@ import React from "react";
 import Slider from "react-slick";
 import './CardSlider.css';
 import { connect } from 'react-redux'
-import { web3connect, fetchCards, buyCard, instantiateMTGCardsContract } from './../actions';
+import { web3connect, fetchCards, instantiateMTGCardsContract } from './../actions';
 
-class CardSlider extends React.Component {
+class YourCardsView extends React.Component {
   constructor(props) {
     super(props)
 
@@ -17,30 +17,18 @@ class CardSlider extends React.Component {
     window.addEventListener('load', () => {
       this.props.web3connect();
       this.props.instantiateMTGCardsContract().then(() => {
-        this.props.fetchCards(true);
+        this.props.fetchCards(false);
       });
     });
   }
 
-  renderCards(mtgCards) {
-    return mtgCards.map(card => {
-      return <div key={card.id + "available cards"}> 
-        <img id={card.id} className="slider-image" alt="" src={card.url}  onClick={this.availableCardClicked.bind(this)} />
+  renderCards(yourMtgCards) {
+    return yourMtgCards.map(card => {
+      return <div key={card.id + "your cards"}> 
+        <img className="slider-image" alt="" src={card.url} />
       </div>
     });
   }
-
-  availableCardClicked(e, data) {
-    const id = e.target.id;
-    const url = e.target.src;
-    this.props.instantiateMTGCardsContract().then(() => {
-      this.props.buyCard({ 
-        id: id,
-        url: url
-      });
-    });
-  }
-
 
   render() {
     var settings = {
@@ -53,7 +41,7 @@ class CardSlider extends React.Component {
     };
     return (
       <Slider {...settings}>
-        {this.renderCards(this.props.mtgCards)}
+        {this.renderCards(this.props.yourMtgCards)}
       </Slider>
     );
   }
@@ -61,14 +49,13 @@ class CardSlider extends React.Component {
 const mapDispatchToProps = {
   web3connect,
   instantiateMTGCardsContract,
-  fetchCards,
-  buyCard
+  fetchCards
 };
 
 const mapStateToProps = (state) => ({
   web3: state.web3,
   cardsContract: state.cardsContract, 
-  mtgCards: state.mtgCards
+  yourMtgCards: state.yourMtgCards
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardSlider);
+export default connect(mapStateToProps, mapDispatchToProps)(YourCardsView);
