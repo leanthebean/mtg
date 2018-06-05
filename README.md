@@ -22,6 +22,6 @@
 - `cd mtg/server` 
 - `npm start` 
 
-5) And finally, let's run out frontend! 
+5) And finally, let's run our frontend! 
 - `cd mtg/`
 - `npm run start` 
